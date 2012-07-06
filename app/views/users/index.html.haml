@@ -1,0 +1,42 @@
+%p#notice
+    = notice
+-if current_user
+    %h1
+    Current Chorebot Drones
+    %table
+        %tr
+            %th
+                Username
+            %th
+                Email
+            %th
+            %th
+            %th
+        - @users.each do |user| 
+            %tr
+                %td
+                    = user.username 
+                %td
+                    = user.email
+                %td
+                    = link_to 'View', user
+                %td
+                    = link_to 'Edit', edit_user_path(user) 
+                %td
+                    = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
+
+    = link_to 'New Drone', new_user_path, :class => 'button'
+-else
+    .create-account-form
+        .welcome
+            %h1
+                Welcome to chorebot!
+            %h2
+                If your new, create your account here
+
+            = render 'form' 
+
+    .login
+        %h2
+            or
+            = link_to 'Login Here', :login

@@ -1,0 +1,139 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit;}
+
+body{
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   line-height:1.6em;
+   background-image:image-url('robot.png'), image-url('bg.png');
+   background-repeat:no-repeat, repeat;
+   background-position-y:450px;
+   background-position-x:40px;
+}
+
+a{
+  text-decoration:none;
+  color:#20468E;
+}
+
+#container{
+  width:960px;
+  margin:0 auto;
+}
+
+#nav{
+  background:#000;
+  color:#fff;
+  margin-bottom:40px;
+  padding:20px 0; 
+  a{
+    color:#a1e0dc;
+    margin-left:20px;
+    text-decoration: none
+  }
+  a:hover{
+      color:#bbb;
+  }
+  a:first-of-type{
+    margin-left:0;
+  }
+}
+
+h1{
+  font-size: 18pt;
+  margin-bottom:10px;
+  font-weight:600;
+}
+
+h2{
+  font-size: 16pt;
+  margin-bottom:10px;
+}
+
+
+table
+{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  width: 480px;
+  border-collapse: collapse;
+  text-align: left;
+}
+th
+{
+  font-size: 14px;
+  font-weight: normal;
+  color: #039;
+  padding: 10px 8px;
+  border-bottom: 2px solid #6678b1;
+}
+td
+{
+  color: #669;
+  padding: 9px 8px 0px 8px;
+}
+tbody tr:hover td
+{
+  color: #009;
+}
+
+.chore-command{
+  margin-bottom:20px;
+}
+
+.userinfo{
+  float:right;
+}
+
+.controls{
+  float:left;
+}
+
+#admin-bar{
+  display:inline-block;
+  width:960px;
+}
+
+a#home {
+  background-image:image-url('home.png');
+  width:20px;
+  height:20px;
+  float:left;
+  position:relative;
+  top:2px;
+}
+
+.login{
+  float:left;
+  padding:130px 0;
+}
+
+.create-account-form{
+  float:left;
+  margin-right:40px;
+  padding-right:40px;
+  border-right:1px solid #777;
+}
+
+.welcome{
+  margin-bottom:20px;
+}
+
+.actions{
+  margin-top:10px;
+}
+
+.button{
+  background-color:#000;
+  padding:10px;
+  margin-top:20px;
+  float:left;
+  color:#fff;
+}
+.button:hover{
+  background-color:#444;
+}
+
+#notice{
+  color:green;
+}
+

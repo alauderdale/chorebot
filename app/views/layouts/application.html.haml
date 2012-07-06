@@ -1,0 +1,28 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %title
+      Chorebot
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+%body
+  #nav
+    #container
+      -if current_user
+        #admin-bar
+          .controls
+            = link_to '', users_path , :id => 'home'
+            = link_to 'Edit Profile', edit_user_path(current_user.id)
+            = link_to 'Logout', :logout
+          .userinfo
+            Hello
+            = current_user.username
+      -else
+        #admin-bar
+          .controls
+            = link_to '', users_path , :id => 'home'
+            = link_to 'Sign Up', new_user_path
+            = link_to 'Login', :login      
+  #container
+    = yield 

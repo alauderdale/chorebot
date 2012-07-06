@@ -1,0 +1,25 @@
+#notice
+  = notice
+
+.chore-command
+  %h2
+    =@user.username
+    is is scheduled to do cave chores on July 10th, 2013
+
+%h3
+  Drone info
+%p
+  %b
+    Username:
+  = @user.username 
+
+%p
+  %b
+    email:
+  = @user.email 
+%br
+
+
+
+= link_to 'Edit', edit_user_path(@user) 
+= link_to 'Back', users_path 
