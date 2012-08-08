@@ -4,8 +4,8 @@ body{
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    font-weight: 300;
    line-height:1.6em;
-   background-image:image-url('robot.png'), image-url('bg.png');
-   background-repeat:no-repeat, repeat;
+   background-image: image-url('bg.png');
+   background-repeat:repeat;
    background-position-y:450px;
    background-position-x:40px;
 }

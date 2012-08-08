@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @currently_assigned = User.current_chore_user
+    @users = User.order('chore_date DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -45,6 +46,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user.chore_date = Time.now - 1.day
 
     respond_to do |format|
       if @user.save
