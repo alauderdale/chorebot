@@ -10,9 +10,9 @@
           %li
             = msg 
   .field
-    Full Name
+    = f.label 'full name'
     %br
-    = f.text_field :username
+    = f.text_field :username , :placeholder => 'ex: Arnold Schwarzenegger'
   .field
     = f.label :email
     %br
@@ -31,4 +31,7 @@
     %br
     = f.text_field :chore_date
   .actions
-    = f.submit
+    -if current_user
+      = f.submit :value => 'Update' , :class => 'button'
+    - else
+      = f.submit :value => 'Create Acct' , :class => 'button'

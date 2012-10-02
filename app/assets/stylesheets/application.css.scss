@@ -36,9 +36,36 @@ body{
    background-position-x:40px;
 }
 
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+input[type=text],input[type=password] {
+      border:none;
+      @include box-shadow(none);
+      @include border-radius(20px);
+      margin:0;
+      padding:10px;
+      font-size:8pt;
+    }
+
 a{
   text-decoration:none;
   color:#20468E;
+}
+
+strong{
+  font-weight:bold;
 }
 
 .landing-container{
@@ -92,6 +119,11 @@ a{
   text-align:center;
   position:relative;
   bottom:100px;
+  a{
+    &:hover{
+      color:#999;
+    }
+  }
   .field{ 
     height:55px;
     input{
@@ -132,7 +164,23 @@ a{
   width:100%;
 }
 
+.fancybox-skin{
+  background-color:#e35325;
+  color:#fff;
+}
 
+.sign-up-form{
+  float:left;
+  width:200px;
+}
+.chorebot-and-you{
+  float:left;
+  width:200px;
+  height:259px;
+  background-image:url(you_and_chorebot.png);
+  margin-top:25px;
+  margin-left:30px;
+}
 
 #nav{
   background:#e35325;;
@@ -233,6 +281,10 @@ a#home {
   float:left;
   margin-right:40px;
   padding-right:40px;
+  color:#fff;
+  label{
+    font-size:10pt;
+  }
 }
 
 .welcome{
@@ -290,3 +342,7 @@ a#home {
   margin-top:80px;
 }
 
+
+.chores{
+  width:400px;
+}

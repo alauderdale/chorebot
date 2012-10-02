@@ -1,24 +1,25 @@
-#notice
-  = notice
+.wrapped.wrapper
+  #notice
+    = notice
 
-%h3
-  Drone info
-%p
-  %b
-    Username:
-  = @user.username 
-%p
-  %b
-    email:
-  = @user.email 
-%p
-  %b
-    chore date:
-  = @user.chore_date.inspect 
+  %h3
+    Drone info
+  %p
+    %b
+      Username:
+    = @user.username 
+  %p
+    %b
+      email:
+    = @user.email 
+  %p
+    %b
+      chore date:
+    = @user.chore_date.inspect 
 
-%br
+  %br
 
 
 
-= link_to 'Edit', edit_user_path(@user) 
-= link_to 'Back', users_path 
+  = link_to 'Edit', edit_user_path(@user) 
+  = link_to 'Back', users_path 

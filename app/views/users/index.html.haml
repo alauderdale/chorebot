@@ -6,47 +6,70 @@
         - if current_user.username == @currently_assigned.username
             %h1
                 = @currently_assigned.username
-                Its your day to do chores!
+                , Luck you! Its your day to do 
+                %a.fancybox{:href => "#chores-overlay"}
+                    chores.
         -else
-            %h1
-                = current_user.username
-                Its not your day to do chores
-                = @currently_assigned.username
-                Is doing chores today
-        - if current_user.admin?
-            %h1
-            Current Chorebot Drones
-            %table
+            -if @next_chore == (Time.now.to_date + 1)
+                %h1
+                    = @currently_assigned.username
+                    Is doing  
+                    %a.fancybox{:href => "#chores-overlay"}
+                        chores                  
+                    today
+                %h1
+                    You get to do chores Tomorrow! Dont forget...
+                -else
+                    %h1
+                        = @currently_assigned.username
+                        Is doing  
+                        %a.fancybox{:href => "#chores-overlay"}
+                            chores                 
+                        today
+                    %h1
+                        You get to do chores on
+                        = @next_chore.inspect
+
+        %h1
+        Current Chorebot Drones
+        %table
+            %tr
+                %th
+                    Name
+                %th
+                    Email
+                %th
+                    Did Chores
+                %th
+                %th
+                %th
+            - @users.each do |user| 
                 %tr
-                    %th
-                        Name
-                    %th
-                        Email
-                    %th
-                        Did Chores on
-                    %th
-                    %th
-                    %th
-                - @users.each do |user| 
-                    %tr
-                        %td
-                            = user.username 
-                        %td
-                            = user.email
-                        %td
-                            = user.chore_date.inspect
+                    %td
+                        = user.username 
+                    %td
+                        = user.email
+                    %td
+                        = user.chore_date.inspect
+                    - if current_user.admin?
                         %td
                             = link_to 'View', user
                         %td
                             = link_to 'Edit', edit_user_path(user) 
                         %td
                             = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
-
+        - if current_user.admin?
             %a.fancybox.button{:href => "#sign-up"}
                 New Drone
             #sign-up.hidden.create-account-form
                 .welcome
                     = render 'form' 
+    #chores-overlay.hidden
+        .chores
+            %h1
+                Chores
+            %p
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan sapien ac felis sollicitudin non convallis nisl luctus. Maecenas leo nunc, pretium at tempor a, convallis eu nisl. Mauris dui nulla, lobortis vitae gravida non, tristique a lacus. Integer vehicula posuere orci quis tempor. Morbi sit amet nulla nunc, non iaculis elit. Cras ligula dolor, posuere eget posuere eu, mollis nec sem. Aenean volutpat ligula at enim fringilla ultricies. Etiam aliquet arcu non nunc dictum vel vehicula sapien ornare. Pellentesque tristique fringilla fringilla. Pellentesque ultricies interdum sapien sed pretium. Nunc ipsum tellus, mattis at rhoncus nec, aliquet at quam. Sed erat nisl, fringilla eget iaculis at, scelerisque at tortor.
 -else
     .landing-container
         .wrapped
@@ -59,7 +82,19 @@
                 .login
                     = render :partial => 'user_sessions/form'
                     %a.fancybox.sign-up-link{:href => "#sign-up"}
-                        Join Us
+                        Jooooooin Us
                     #sign-up.hidden.create-account-form
-                        .welcome
-                            = render 'form' 
+                        %h1
+                            Sweet, Sweet responsibility!
+                        %h2
+                            Good For You
+                        .sign-up-form
+                            .welcome
+                                = render 'form' 
+                        .chorebot-and-you
+                        .clearfix
+                        .terms
+                            %p
+                                %strong
+                                    Terms &amp; Conditions: 
+                                Don't do chores, buy ozo for all...

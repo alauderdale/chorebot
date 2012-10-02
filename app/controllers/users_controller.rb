@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def index
     @currently_assigned = User.current_chore_user
     @users = User.order('chore_date DESC')
+    if current_user
+      @next_chore = Time.now.to_date + (User.where('chore_date < ?', current_user.chore_date).count + 1)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -17,7 +20,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
