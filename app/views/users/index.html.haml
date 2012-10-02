@@ -1,34 +1,3 @@
-/ :javascript
-/     Date.prototype.getDOY = function() {
-/     var onejan = new Date(this.getFullYear(),0,1);
-/     return Math.ceil((this - onejan) / 86400000);
-/     } 
-/     var today = new Date();
-/     var DOY = today.getDOY(); 
-/     // DOY is day of year 1-365 or 366 in leap year
-
-/     var TOD = new Array(#{@users.count});
-
-/     TOD[1] = "#{current_user.username}";
-/     // and so on up to TOD[366] (to allow for leap year)
-/     TOD[64] ="Pine trees grow tall, but they do not reach the sky."  // for testing on day 64 (5th March) - change to suit
-
-/     var weekDays = new Array ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-/     var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-/     var dd = today.getDate();
-/     var dy = today.getDay();
-/     var mm = today.getMonth();
-/     var yy = today.getFullYear();
-
-/     var daySuffix = 'th';
-/     if(dd != 11 && dd != 12 && dd != 13) {ddx = dd % 10}
-/     else {ddx = dd}
-/     if (ddx == 1) { daySuffix = 'st' }
-/     if (ddx == 2) { daySuffix = 'nd' }
-/     if (ddx == 3) { daySuffix = 'rd' }
-
-/     var tipOfDay = "Chore Do Person of the day for " + weekDays[dy] + " " + dd  + daySuffix + " " + months[mm] + " " + yy + ":- &nbsp&nbsp  " + TOD[1]
-/     document.write(tipOfDay);
 
 %p#notice
     = notice
@@ -41,7 +10,7 @@
     %table
         %tr
             %th
-                Username
+                Name
             %th
                 Email
             %th
