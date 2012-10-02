@@ -24,6 +24,8 @@ end
 gem 'jquery-rails'
 gem 'haml'
 gem 'authlogic'
+gem 'thin'
+gem 'bourbon', '1.3.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

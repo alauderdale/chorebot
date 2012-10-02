@@ -9,12 +9,8 @@
       %li
         = msg
     .field
-      = f.label :email 
-      %br
-      = f.text_field :username 
+      = f.text_field :username , :placeholder => "email"
     .field
-      = f.label :password 
-      %br
-      = f.password_field :password 
-    .actions
-      = f.submit 
+      = f.password_field :password , :placeholder => "password"
+    .actions.login-submit
+      = f.submit  :value => "Login"

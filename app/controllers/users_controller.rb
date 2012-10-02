@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       format.json { render json: @users }
       format.json { render json: @user }
     @user = User.new
+    @user_session = UserSession.new
     end
   end
 

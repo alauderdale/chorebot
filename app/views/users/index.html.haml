@@ -2,49 +2,64 @@
 %p#notice
     = notice
 -if current_user
-    %h1
-        = @currently_assigned.username
-        Its your day to do chores!
-    %h1
-    Current Chorebot Drones
-    %table
-        %tr
-            %th
-                Name
-            %th
-                Email
-            %th
-                Did Chores on
-            %th
-            %th
-            %th
-        - @users.each do |user| 
-            %tr
-                %td
-                    = user.username 
-                %td
-                    = user.email
-                %td
-                    = user.chore_date.inspect
-                %td
-                    = link_to 'View', user
-                %td
-                    = link_to 'Edit', edit_user_path(user) 
-                %td
-                    = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
-
-    = link_to 'New Drone', new_user_path, :class => 'button'
--else
-    .create-account-form
-        .welcome
+    .wrapped.wrapper
+        - if current_user.username == @currently_assigned.username
             %h1
-                Welcome to chorebot!
-            %h2
-                If your new, create your account here
+                = @currently_assigned.username
+                Its your day to do chores!
+        -else
+            %h1
+                = current_user.username
+                Its not your day to do chores
+                = @currently_assigned.username
+                Is doing chores today
+        - if current_user.admin?
+            %h1
+            Current Chorebot Drones
+            %table
+                %tr
+                    %th
+                        Name
+                    %th
+                        Email
+                    %th
+                        Did Chores on
+                    %th
+                    %th
+                    %th
+                - @users.each do |user| 
+                    %tr
+                        %td
+                            = user.username 
+                        %td
+                            = user.email
+                        %td
+                            = user.chore_date.inspect
+                        %td
+                            = link_to 'View', user
+                        %td
+                            = link_to 'Edit', edit_user_path(user) 
+                        %td
+                            = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
 
-            = render 'form' 
-
-    .login
-        %h2
-            or
-            = link_to 'Login Here', :login
+            %a.fancybox.button{:href => "#sign-up"}
+                New Drone
+            #sign-up.hidden.create-account-form
+                .welcome
+                    = render 'form' 
+-else
+    .landing-container
+        .wrapped
+            %h1
+                Chorebot
+            .robot
+        .hill-top
+        .hill
+            .wrapped
+                .login
+                    = render :partial => 'user_sessions/form'
+                    %a.fancybox.sign-up-link{:href => "#sign-up"}
+                        Join Us
+                    #sign-up.hidden.create-account-form
+                        .welcome
+                            = render 'form' 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710201215) do
+ActiveRecord::Schema.define(:version => 20121002194142) do
 
   create_table "chores", :force => true do |t|
     t.datetime "chore_date"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120710201215) do
     t.date     "chore_date"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.boolean  "admin"
   end
 
 end
