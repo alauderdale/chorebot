@@ -3,35 +3,32 @@
     = notice
 -if current_user
     .wrapped.wrapper
-        - if current_user.username == @currently_assigned.username
+        .chore-display
             %h1
-                = @currently_assigned.username
-                , Luck you! Its your day to do 
-                %a.fancybox{:href => "#chores-overlay"}
-                    chores.
-        -else
-            -if @next_chore == (Time.now.to_date + 1)
+                Howdy
+                = current_user.username
+            - if  current_user.username != @currently_assigned.username
                 %h1
-                    = @currently_assigned.username
-                    Is doing  
-                    %a.fancybox{:href => "#chores-overlay"}
-                        chores                  
-                    today
-                %h1
-                    You get to do chores Tomorrow! Dont forget...
-                -else
+                    Your estimated next chore date is
+                    %span.orange
+                        = @next_chore.inspect
+            - if @currently_assigned
+                - if current_user.username == @currently_assigned.username
                     %h1
+                        %span.orange
+                            Luck you! Its your day to do 
+                            %a.fancybox{:href => "#chores-overlay"}
+                                chores.
+                -else
+                    %p
                         = @currently_assigned.username
                         Is doing  
                         %a.fancybox{:href => "#chores-overlay"}
                             chores                 
                         today
-                    %h1
-                        You get to do chores on
-                        = @next_chore.inspect
+            -else 
+                Its the Weekend! no one does chores today! Whohoo!
 
-        %h1
-        Current Chorebot Drones
         %table
             %tr
                 %th
@@ -69,7 +66,17 @@
             %h1
                 Chores
             %p
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan sapien ac felis sollicitudin non convallis nisl luctus. Maecenas leo nunc, pretium at tempor a, convallis eu nisl. Mauris dui nulla, lobortis vitae gravida non, tristique a lacus. Integer vehicula posuere orci quis tempor. Morbi sit amet nulla nunc, non iaculis elit. Cras ligula dolor, posuere eget posuere eu, mollis nec sem. Aenean volutpat ligula at enim fringilla ultricies. Etiam aliquet arcu non nunc dictum vel vehicula sapien ornare. Pellentesque tristique fringilla fringilla. Pellentesque ultricies interdum sapien sed pretium. Nunc ipsum tellus, mattis at rhoncus nec, aliquet at quam. Sed erat nisl, fringilla eget iaculis at, scelerisque at tortor.
+                %strong
+                    Mon, Wed
+                %br
+                    Trash, Dishes
+                %br
+                %strong
+                    Tues, Thurs
+                %br
+                    Trash, Dishes
+                %br
+
 -else
     .landing-container
         .wrapped
@@ -80,6 +87,13 @@
         .hill
             .wrapped
                 .login
+                    %p
+                        -if @currently_assigned
+                            %span.orange
+                                = @currently_assigned.username
+                            It's your day to do chores
+                        -else
+                            No one doing chores today!
                     = render :partial => 'user_sessions/form'
                     %a.fancybox.sign-up-link{:href => "#sign-up"}
                         Jooooooin Us

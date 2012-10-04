@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
 
   def self.current_chore_user
     u = User.find_by_chore_date(Time.now.to_date)
-    if !u
+    if !u && !(Time.now.sunday? || Time.now.saturday?)
       u = User.order('chore_date ASC').first
       u.update_attribute(:chore_date, Time.now.to_date)
+    elsif (Time.now.sunday? || Time.now.saturday?)
+      u = nil
     end
     u
   end

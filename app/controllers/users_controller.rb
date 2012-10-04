@@ -5,7 +5,9 @@ class UsersController < ApplicationController
     @currently_assigned = User.current_chore_user
     @users = User.order('chore_date DESC')
     if current_user
-      @next_chore = Time.now.to_date + (User.where('chore_date < ?', current_user.chore_date).count + 1)
+      @next_chore = Time.now.to_date + (User.where('chore_date < ?', current_user.chore_date).count + 1).days
+      @next_chore += 1.day if @next_chore.saturday?
+      @next_chore += 1.day if @next_chore.sunday?
     end
     respond_to do |format|
       format.html # index.html.erb

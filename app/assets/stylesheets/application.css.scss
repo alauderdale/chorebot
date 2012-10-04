@@ -60,7 +60,7 @@ input[type=text],input[type=password] {
     }
 
 a{
-  text-decoration:none;
+  text-decoration:underline;
   color:#20468E;
 }
 
@@ -68,8 +68,13 @@ strong{
   font-weight:bold;
 }
 
+.orange{
+  color:#e35325;
+  font-weight:600;
+}
+
 .landing-container{
-  padding-top:100px;
+  padding-top:40px;
   h1{
     font-family: 'museo_bold';
     font-style:italic;
@@ -81,6 +86,10 @@ strong{
     display:none;
     position:relative;
     right:200px;
+  }
+  p{
+    color:#fff;
+    margin-bottom:20px;
   }
 }
 
@@ -205,6 +214,7 @@ strong{
 h1{
   font-size: 18pt;
   margin-bottom:10px;
+  line-height:120%;
   font-weight:600;
 }
 
@@ -241,6 +251,10 @@ tbody tr:hover td
 }
 
 .chore-command{
+  margin-bottom:20px;
+}
+
+.chore-display{
   margin-bottom:20px;
 }
 

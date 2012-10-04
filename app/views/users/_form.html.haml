@@ -26,10 +26,17 @@
     = f.label :password_confirmation
     %br
     = f.password_field :password_confirmation
-  .field.hidden
-    = f.label :chore_date
-    %br
-    = f.text_field :chore_date
+  -if current_user
+    -if current_user.admin?
+      .field
+        = f.label :chore_date
+        %br
+        = f.text_field :chore_date
+    -else
+      .field.hidden
+        = f.label :chore_date
+        %br
+        = f.text_field :chore_date    
   .actions
     -if current_user
       = f.submit :value => 'Update' , :class => 'button'
