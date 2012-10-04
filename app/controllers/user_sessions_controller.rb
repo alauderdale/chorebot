@@ -4,7 +4,6 @@ class UserSessionsController < ApplicationController
   # GET /user_sessions/new.xml
   def new
     @user_session = UserSession.new
-
     respond_to do |format|
       format.html # new.html.haml
       format.xml  { render :xml => @user_session }

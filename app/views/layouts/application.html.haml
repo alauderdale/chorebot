@@ -3,26 +3,35 @@
   %head
     %title
       Chorebot
+    = stylesheet_link_tag    'jquery.fancybox'
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery.fancybox'
     = csrf_meta_tags
+    :javascript
+      $(document).ready(function() {
+        $(".fancybox").fancybox();
+        $('.landing-container h1').fadeIn('fast', function(){
+
+          $('.landing-container h1').addClass('noright');
+
+
+        });
+        $('.robot').fadeIn(1000);
+        $('#notice').fadeIn(500).delay(900).fadeOut(500);
+
+      });
 %body
-  #nav
-    #container
-      -if current_user
+  -if current_user
+    #nav
+      .wrapped
         #admin-bar
+          = link_to '', users_path , :id => 'home'
           .controls
-            = link_to '', users_path , :id => 'home'
             = link_to 'Edit Profile', edit_user_path(current_user.id)
             = link_to 'Logout', :logout
           .userinfo
             Hello
             = current_user.username
-      -else
-        #admin-bar
-          .controls
-            = link_to '', users_path , :id => 'home'
-            = link_to 'Sign Up', new_user_path
-            = link_to 'Login', :login      
   #container
     = yield 
