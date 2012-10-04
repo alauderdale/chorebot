@@ -1,42 +1,114 @@
+
 %p#notice
     = notice
 -if current_user
-    %h1
-    Current Chorebot Drones
-    %table
-        %tr
-            %th
-                Username
-            %th
-                Email
-            %th
-            %th
-            %th
-        - @users.each do |user| 
-            %tr
-                %td
-                    = user.username 
-                %td
-                    = user.email
-                %td
-                    = link_to 'View', user
-                %td
-                    = link_to 'Edit', edit_user_path(user) 
-                %td
-                    = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
-
-    = link_to 'New Drone', new_user_path, :class => 'button'
--else
-    .create-account-form
-        .welcome
+    .wrapped.wrapper
+        .chore-display
             %h1
-                Welcome to chorebot!
-            %h2
-                If your new, create your account here
+                Howdy
+                = current_user.username
+            - if  current_user.username != @currently_assigned.username
+                %h1
+                    Your estimated next chore date is
+                    %span.orange
+                        = @next_chore.inspect
+            - if @currently_assigned
+                - if current_user.username == @currently_assigned.username
+                    %h1
+                        %span.orange
+                            Luck you! Its your day to do 
+                            %a.fancybox{:href => "#chores-overlay"}
+                                chores.
+                -else
+                    %p
+                        = @currently_assigned.username
+                        Is doing  
+                        %a.fancybox{:href => "#chores-overlay"}
+                            chores                 
+                        today
+            -else 
+                Its the Weekend! no one does chores today! Whohoo!
 
-            = render 'form' 
+        %table
+            %tr
+                %th
+                    Name
+                %th
+                    Email
+                %th
+                    Did Chores
+                %th
+                %th
+                %th
+            - @users.each do |user| 
+                %tr
+                    %td
+                        = user.username 
+                    %td
+                        = user.email
+                    %td
+                        = user.chore_date.inspect
+                    - if current_user.admin?
+                        %td
+                            = link_to 'View', user
+                        %td
+                            = link_to 'Edit', edit_user_path(user) 
+                        %td
+                            = link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } 
+        - if current_user.admin?
+            %a.fancybox.button{:href => "#sign-up"}
+                New Drone
+            #sign-up.hidden.create-account-form
+                .welcome
+                    = render 'form' 
+    #chores-overlay.hidden
+        .chores
+            %h1
+                Chores
+            %p
+                %strong
+                    Mon, Wed
+                %br
+                    Trash, Dishes
+                %br
+                %strong
+                    Tues, Thurs
+                %br
+                    Trash, Dishes
+                %br
 
-    .login
-        %h2
-            or
-            = link_to 'Login Here', :login
+-else
+    .landing-container
+        .wrapped
+            %h1
+                Chorebot
+            .robot
+        .hill-top
+        .hill
+            .wrapped
+                .login
+                    %p
+                        -if @currently_assigned
+                            %span.orange
+                                = @currently_assigned.username
+                            It's your day to do chores
+                        -else
+                            No one doing chores today!
+                    = render :partial => 'user_sessions/form'
+                    %a.fancybox.sign-up-link{:href => "#sign-up"}
+                        Jooooooin Us
+                    #sign-up.hidden.create-account-form
+                        %h1
+                            Sweet, Sweet responsibility!
+                        %h2
+                            Good For You
+                        .sign-up-form
+                            .welcome
+                                = render 'form' 
+                        .chorebot-and-you
+                        .clearfix
+                        .terms
+                            %p
+                                %strong
+                                    Terms &amp; Conditions: 
+                                Don't do chores, buy ozo for all...

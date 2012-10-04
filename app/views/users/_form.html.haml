@@ -10,9 +10,9 @@
           %li
             = msg 
   .field
-    = f.label :username
+    = f.label 'full name'
     %br
-    = f.text_field :username
+    = f.text_field :username , :placeholder => 'ex: Arnold Schwarzenegger'
   .field
     = f.label :email
     %br
@@ -26,5 +26,19 @@
     = f.label :password_confirmation
     %br
     = f.password_field :password_confirmation
+  -if current_user
+    -if current_user.admin?
+      .field
+        = f.label :chore_date
+        %br
+        = f.text_field :chore_date
+    -else
+      .field.hidden
+        = f.label :chore_date
+        %br
+        = f.text_field :chore_date    
   .actions
-    = f.submit 
+    -if current_user
+      = f.submit :value => 'Update' , :class => 'button'
+    - else
+      = f.submit :value => 'Create Acct' , :class => 'button'
